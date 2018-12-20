@@ -1,0 +1,68 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> QUOTIFY </title>
+    </head>
+    <body>
+       <div id="root"> 
+       
+        <b><em><center>LISTING ALL SAVED QUOTES </center></em></b> 
+
+        </div>
+           
+        
+                
+       <script>
+           
+   
+        
+            var allQuoteHandle = document.getElementById('allQuotesList');
+   
+    
+
+      let quoteArray = localStorage.getItem('quoteArray') ? JSON.parse(localStorage.getItem('quoteArray')) : [];
+        console.log(typeof quoteArray);
+
+   
+
+           function listAllQuotes() {
+               for(let i = 0; i < quoteArray.length; i++) {
+                   let allSection = `
+                   <span id="quote-text-local">${quoteArray[i].quoteText}</span><i class="quoteIcon2 fas fa-quote-right">
+                            <h5 id="author-name-local">${quoteArray[i].quoteAuthor}</h5>
+                            
+                                <button type="button" id="editBtn"  onclick="editQuoteLocal(this)"></button>
+                                <button type="button" id="deleteBtn"  onclick="deleteQuoteLocal(this)" ></button>
+                             `;
+                let newSection = document.createElement('section');
+                newSection.setAttribute('class', 'quote-box-all');
+                newSection.innerHTML = allSection;
+                document.body.appendChild(newSection);
+               }
+           }
+           listAllQuotes();
+           
+           //delete from local storage
+           const deleteBtnHandle = document.getElementById('deleteBtn');
+           
+           deleteBtnHandle.addEventListener('click', function() {
+               let deleteQuote = this.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
+               let quoteIndex = quoteArray.findIndex(function(quote) {
+                   quote.quoteText == deleteQuote;
+               });
+});
+function deleteQuoteLocal(obj) {
+    let deleteQuoteText = obj.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
+    console.log(deleteQuoteText);
+
+    let quoteIndex = quoteArray.findIndex(quote => quote.quoteText == deleteQuoteText)
+}
+              
+       </script>
+    </body>
+</html>
+
+

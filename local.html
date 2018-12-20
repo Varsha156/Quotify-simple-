@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            
+        </title>
+        <body>
+                <button onclick='promptInput()'>
+                    Enter product name
+                </button>
+            <script>
+
+                let products=localStorage.getItem('products')?JSON.parse(localStorage.getItem('products')):[];
+
+                localStorage.setItem('products',JSON.stringify(products));
+                function promptInput(){
+                    let name=prompt('Enter name');
+                    let productsInStorage=JSON.parse(localStorage.getItem('products'));
+                    productsInStorage.push(name);
+                    localStorage.setItem('products',JSON.stringify(productsInStorage));
+                    console.log(productsInStorage);
+
+                }
+                
+                </script>
+        </body>
+    </head>
+</html>

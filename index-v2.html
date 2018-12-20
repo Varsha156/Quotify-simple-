@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+              </title>
+        <body>
+                
+                <h1><center>Quotify</center></h1>
+                 <a href='index-v2.html'id='a1' onclick='quote()' >Random quote(API) </a>
+                 <a href='index-v2.html'id='a2'  >Random quote(Local) </a>
+                 <a href='index-v2.html'id='a3' onclick='addQuote()' >Add quote </a>
+                 <a href='index-v2.html'id='a4'  onclick='listQuote()'>List all quotes</a>
+                 
+                <!-- <button id='btn1'>Random quote</button> -->
+                <div id='root'></div>
+               
+                <button id='btn' >Get another quote </button>
+                <button id='btn1' onclick= 'save()'>Save button</button>
+                
+            <script>
+                 
+              var rootHandle=document.getElementById('root');
+              var btnHandle=document.getElementById('btn');
+              var aHandle=document.getElementById('a');
+              var btn1Handle=document.getElementById('btn1');
+              var a2Handle=document.getElementById('a2');
+              var a3Handle=document.getElementById('a3');
+              var quotes;
+              
+             function quote(){
+                var xhr = new XMLHttpRequest();
+                 xhr.open('GET', 'https://talaikis.com/api/quotes/random/');
+                 xhr.send();
+                 xhr.onload = function () {
+                    var json = JSON.parse(xhr.responseText);
+                    rootHandle.innerHTML=`${json.quote} -${json.author}`;
+                      quotes=rootHandle.innerHTML;
+                    }
+              }
+               quote();
+            
+             btnHandle.addEventListener('click',function(){
+                 quote();
+                btn1Handle.innerHTML ='Save to local';
+               }
+              ,false);
+
+               function save(quote,author){
+                  var savedQuote=localStorage.getItem('qu') ? JSON.parse(localStorage.getItem('qu')) : [];
+                  localStorage.setItem('qu',JSON.stringify(savedQuote));
+                  btn1Handle.addEventListener('click',function(){     
+                  localStorage.setItem('qu',(quotes));
+                  console.log(quotes);
+                  savedQuote=JSON.parse(localStorage.getItem('qu'));
+                  savedQuote.push(qu);
+                  console.log(savedQuote);  
+               },false);
+            }
+
+            function listQuote(){
+              a3Handle.addEventListener('click',function(){
+                var savedQuote={
+                quote:savedQuote.quote,
+                author:savedQuote.author
+              }
+              localStorage.setItem(JSON.stringify(listQuote));
+              var localQuote = [];
+              localQuote.push(savedQuote)
+              })
+              
+            }
+            listQuote()
+             
+                </script>
+        </body>
+    </head>
+</html>

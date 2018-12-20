@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            
+
+        </title>
+        <body>
+                <h1>Write a story</h1>
+                <textarea rows='50' cols='150' id='body'></textarea>
+                
+            <script>
+                var bodyHandle=document.getElementById('body');
+                let story=localStorage.getItem('text')?localStorage.getItem('text'):'';
+
+               
+                bodyHandle.addEventListener('keyup',function(){
+                    
+                    localStorage.setItem('text',bodyHandle.value);
+                
+                },false);
+                bodyHandle.value=localStorage.getItem('text');
+                
+                </script>
+        </body>
+    </head>
+</html>

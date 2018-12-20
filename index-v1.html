@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            
+
+        </title>
+        <body>
+                
+               
+                <h1><center>Quotify</center></h1>
+
+                
+                 <a href='index-v1.html'id='a' onclick='quote()' >Random quote(API) </a>
+
+                
+                <div id='root'></div>
+                <button   id='btn' >Get another quote </button><br/><br/>
+            <script>
+              var rootHandle=document.getElementById('root');
+              var btnHandle=document.getElementById('btn');
+              var aHandle=document.getElementById('a');
+             function quote(){
+                var xhr = new XMLHttpRequest();
+                 xhr.open('GET', 'https://talaikis.com/api/quotes/random/');
+                 xhr.send();
+                 xhr.onload = function () {
+    
+                    var json = JSON.parse(xhr.responseText);
+                    rootHandle.innerHTML=`${json.quote} -${json.author}`
+         }
+             
+              }
+              quote();
+             btnHandle.addEventListener('click',function(){
+                 quote(); }
+              ,false);
+                </script>
+        </body>
+    </head>
+</html>
